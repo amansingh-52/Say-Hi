@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1088834191994",
+    "firebase_url": "https://say-hi-203f6.firebaseio.com",
+    "project_id": "say-hi-203f6",
+    "storage_bucket": "say-hi-203f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1088834191994:android:c9f110d968ddc470e0f1c3",
+        "android_client_info": {
+          "package_name": "com.example.sayhi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1088834191994-qbhgie8g94h6lhahs5kb29q9t143fk2r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sayhi",
+            "certificate_hash": "e2772434d3b3048acd55f9b73bad13cc2d1fa5d0"
+          }
+        },
+        {
+          "client_id": "1088834191994-s83mmo9kp4i70dnnpgcoge3uo5a1flhc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt8ApkE7NXpu2NC17TGhTmt6ZgA3XrDTU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1088834191994-s83mmo9kp4i70dnnpgcoge3uo5a1flhc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

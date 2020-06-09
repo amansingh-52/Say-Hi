@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_bottom"
+        android:icon="@drawable/ic_chat_black_24dp"
+        android:title="Chat"
+        />
+    <item
+        android:id="@+id/feed_Bottom"
+        android:icon="@drawable/ic_view_carousel_black_24dp"
+        android:title="Feed" />
+    <item
+        android:id="@+id/setting_bottom"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="Setting"/>
+
+</menu>
