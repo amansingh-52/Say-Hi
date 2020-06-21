@@ -5,6 +5,9 @@ public class Information {
     public String email;
     public String check;
     public String verified;
+    public String uid;
+
+
 
     public String getVerified() {
         return verified;
@@ -20,6 +23,14 @@ public class Information {
 
     public void setCheck(String check) {
         this.check = check;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getName() {
@@ -38,11 +49,12 @@ public class Information {
         this.email = email;
     }
 
-    public Information(String name, String email, String check,String verified) {
+    public Information(String name, String email, String check,String verified, String uid) {
         this.name = name;
         this.email = email;
         this.check = check;
         this.verified = verified;
+        this.uid = uid;
     }
 
     public Information() {

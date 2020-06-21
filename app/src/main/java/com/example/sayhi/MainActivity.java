@@ -11,15 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
@@ -79,24 +76,24 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         Connect connect = new Connect("online");
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("User").child(firebaseUser.getUid()).child("connect").setValue(connect);
+        databaseReference.child("User").child(firebaseUser.getUid()).child("connect").child("appOn").setValue(connect);
     }
 
-
-    @Override
-    protected void onStop() {
-        Connect connect = new Connect("offline");
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("User").child(firebaseUser.getUid()).child("connect").setValue(connect);
-        super.onStop();
-    }
 
     @Override
     protected void onResume() {
         super.onResume();
         Connect connect = new Connect("online");
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("User").child(firebaseUser.getUid()).child("connect").setValue(connect);
+        databaseReference.child("User").child(firebaseUser.getUid()).child("connect").child("appOn").setValue(connect);
+    }
+
+    @Override
+    protected void onStop() {
+        Connect connect = new Connect("offline");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("User").child(firebaseUser.getUid()).child("connect").child("appOn").setValue(connect);
+        super.onStop();
     }
 
     @Override
@@ -106,4 +103,11 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+    public void logout(MenuItem menuItem){
+        firebaseAuth.signOut();
+        Intent intent = new Intent(this,signIn.class);
+        startActivity(intent);
+    }
+
 }

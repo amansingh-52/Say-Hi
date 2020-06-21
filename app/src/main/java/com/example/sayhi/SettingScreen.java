@@ -1,31 +1,19 @@
 package com.example.sayhi;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
+import com.google.android.material.tabs.TabLayout;
 
 public class SettingScreen extends Fragment {
 
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-    DatabaseReference databaseReference;
+    private TabLayout tabLayout;
 
     @Nullable
     @Override
@@ -36,49 +24,29 @@ public class SettingScreen extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final TextView userName = view.findViewById(R.id.userNameDisplaySetting);
-        final TextView userEmail = view.findViewById(R.id.UserEmailDisplaySetting);
-        final TextView userStatus = view.findViewById(R.id.UserStatusDisplaySetting);
-        final TextView postCount = view.findViewById(R.id.NoOfPostSetting);
-        final TextView followingCount = view.findViewById(R.id.NoOfFollowingSetting);
-        final TextView followersCount = view.findViewById(R.id.NoOfFollowersSetting);
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference("User");
-        databaseReference.keepSynced(true);
-        DatabaseReference mDatabaseRef = databaseReference.child(firebaseUser.getUid());
-        mDatabaseRef.keepSynced(true);
-        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+        tabLayout = view.findViewById(R.id.tabLayout);
+        TabLayout.Tab tab = tabLayout.getTabAt(1);
+        tab.select();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.setting_frameLayout, new UserInformation()).commit();
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild("name"))
-                     userName.setText(dataSnapshot.child("name").getValue().toString());
-                if(dataSnapshot.hasChild("email"))
-                     userEmail.setText(dataSnapshot.child("email").getValue().toString());
-                if(dataSnapshot.hasChild("status"))
-                      userStatus.setText(dataSnapshot.child("status").getValue().toString());
-                if(dataSnapshot.hasChild("post_no"))
-                      postCount.setText(dataSnapshot.child("post_no").getValue().toString());
-                if(dataSnapshot.hasChild("following_count"))
-                       followingCount.setText(dataSnapshot.child("following_count").getValue().toString());
-                if(dataSnapshot.hasChild("followers_count"))
-                       followersCount.setText(dataSnapshot.child("followers_count").getValue().toString());
+            public void onTabSelected(TabLayout.Tab tab) {
+                    if(tab.getPosition()==0){
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.setting_frameLayout, new FriendRequest()).commit();
+                    }
+                    else if(tab.getPosition()==1){
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.setting_frameLayout, new UserInformation()).commit();
+                    }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
-        CardView logOutButton = view.findViewById(R.id.logOutButton);
-        logOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                firebaseAuth.signOut();
-                Intent intent = new Intent(view.getContext(),signIn.class);
-                startActivity(intent);
-            }
-        });
-
     }
 }

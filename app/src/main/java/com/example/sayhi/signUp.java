@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -72,7 +73,8 @@ public class signUp extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         firebaseUser = firebaseAuth.getCurrentUser();
-                                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                                        information.uid = firebaseUser.getUid();
+                                        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                                         databaseReference.child("User").child(firebaseUser.getUid()).setValue(information).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {

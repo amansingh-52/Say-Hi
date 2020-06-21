@@ -12,7 +12,7 @@
         android:id="@+id/Search_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/gradient_blue"
+        android:background="@color/blue"
         android:theme="@style/ThemeOverlay.AppCompat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +64,17 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Search_toolbar" />
+
+    <TextView
+        android:id="@+id/searchNoItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

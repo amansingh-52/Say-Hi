@@ -5,6 +5,7 @@
         android:title="Edit Account" />
     <item
         android:id="@+id/logoutMenu"
-        android:title="LogOut" />
+        android:title="LogOut"
+        android:onClick="logout"/>
 
 </menu>

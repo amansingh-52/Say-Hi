@@ -4,10 +4,10 @@
     android:id="@+id/chatCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:elevation="15dp"
     android:orientation="vertical"
     android:padding="10dp"
-    app:cardBackgroundColor="@android:color/transparent"
-    android:elevation="15dp">
+    app:cardBackgroundColor="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
